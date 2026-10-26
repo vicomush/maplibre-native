@@ -232,6 +232,7 @@ private:
     void getHeader(const std::string& url, AsyncRequest* req, AsyncCallback callback) {
         if (header_cache.contains(url)) {
             callback(std::unique_ptr<Response::Error>());
+            return;
         }
 
         Resource resource(Resource::Kind::Source, url);
@@ -283,6 +284,7 @@ private:
     void getMetadata(std::string& url, AsyncRequest* req, AsyncCallback callback) {
         if (metadata_cache.contains(url)) {
             callback(std::unique_ptr<Response::Error>());
+            return;
         }
 
         getHeader(
